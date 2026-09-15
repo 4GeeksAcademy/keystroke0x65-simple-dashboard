@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CreatorPulse creator commerce performance dashboard"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #182331;
+        --line: #e7ebf1;
+      }
+      body {
+        color: var(--ink);
+        font-family: "DM Sans", sans-serif;
+        background: #f7f8fb;
+      }
+      h1,
+      h2,
+      h3,
+      strong {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 5px 20px rgba(32, 46, 64, 0.035);
+      }
+      .eyebrow {
+        color: #9aa5b2;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .mini-bar {
+        border-radius: 4px 4px 1px 1px;
+        background: linear-gradient(180deg, #b0a8ff, #6d5ce7);
+      }
+      .status {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 4px 8px;
+        border-radius: 999px;
+      }
+      .scroll-table {
+        overflow-x: auto;
+      }
+      @media (max-width: 640px) {
+        .scroll-table table {
+          min-width: 620px;
+        }
+      }
+    </style>
+    <title>CreatorPulse · Overview</title>
+  </head>
+  <body class="min-h-screen antialiased">
+    <header class="border-b border-slate-200 bg-white">
+      <div
+        class="mx-auto flex min-h-[68px] max-w-[1340px] items-center gap-7 px-4 sm:px-6 lg:px-8"
+      >
+        <a
+          href="#overview"
+          class="flex items-center gap-3"
+          aria-label="CreatorPulse home"
+          ><span
+            class="grid size-9 place-items-center rounded-xl bg-[#6d5ce7] text-xs font-bold text-white shadow-lg shadow-violet-200"
+            >CP</span
+          ><span
+            ><strong class="block text-sm tracking-tight">CreatorPulse</strong
+            ><small class="block text-[10px] text-slate-400"
+              >Creator commerce analytics</small
+            ></span
+          ></a
+        >
+        <nav
+          class="hidden items-center gap-6 text-sm font-semibold text-slate-400 md:flex"
+          aria-label="Main navigation"
+        >
+          <a
+            class="border-b-2 border-[#6d5ce7] py-6 text-[#6d5ce7]"
+            href="#overview"
+            >Overview</a
+          ><a class="py-6 hover:text-[#6d5ce7]" href="#platforms">Platforms</a
+          ><a class="py-6 hover:text-[#6d5ce7]" href="#operations">Reports</a>
+        </nav>
+        <div class="ml-auto flex items-center gap-3">
+          <span
+            class="hidden items-center gap-2 rounded-full bg-emerald-50 px-3 py-1.5 text-[11px] font-semibold text-emerald-700 sm:flex"
+            ><i class="size-1.5 rounded-full bg-emerald-500"></i>Data
+            synced</span
+          ><button
+            class="grid size-9 place-items-center rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50"
+            aria-label="Notifications"
+          >
+            ♢</button
+          ><span
+            class="grid size-9 place-items-center rounded-full bg-amber-100 text-xs font-bold text-amber-800"
+            >AM</span
+          >
+        </div>
+      </div>
+    </header>
+    <main
+      id="overview"
+      class="mx-auto max-w-[1340px] px-4 py-7 sm:px-6 lg:px-8 lg:py-9"
+    >
+      <section
+        class="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"
+      >
+        <div>
+          <p
+            class="mb-2 text-xs font-bold uppercase tracking-[.16em] text-[#6d5ce7]"
+          >
+            Monday, September 14, 2026 · Last 30 days
+          </p>
+          <h1 class="text-3xl font-bold tracking-[-.045em] sm:text-[38px]">
+            Good morning, Ana <span aria-hidden="true">👋</span>
+          </h1>
+          <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
+            Your content generated
+            <strong class="font-semibold text-slate-700"
+              >€91,900 in attributed sales</strong
+            >. Here's where your commission and conversion engine is strongest.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <select
+            id="date-range"
+            class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-700 outline-none focus:border-[#6d5ce7]"
+            aria-label="Date range"
+          >
+            <option>Last 30 days</option>
+            <option>Last 7 days</option>
+            <option>This quarter</option></select
+          ><button
+            id="export-report"
+            class="rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#6d5ce7]"
+          >
+            Export report
+          </button>
+        </div>
+      </section>
+      <section class="mb-8" aria-labelledby="snapshot-heading">
+        <div class="mb-4 flex items-end justify-between">
+          <div>
+            <p class="eyebrow">01 · Main outcome indicators (KPI)</p>
+            <h2
+              id="snapshot-heading"
+              class="mt-1 text-xl font-bold tracking-tight"
+            >
+              Main outcome indicators
+            </h2>
+          </div>
+          <span class="text-xs text-slate-400"
+            >Compared with previous period</span
+          >
+        </div>
+        <div
+          id="kpi-grid"
+          aria-label="Volume: sales, sign-ups, active users, impressions. Revenue: revenue (commissions, sales), MRR (monthly recurring revenue in subscriptions), average selling price. Engagement: engagement rate, total interactions, conversion rate. Retention: churn (churn rate), persistence, completion rate of the sales or subscription process. Performance: total conversions, click-through rate (CTR), conversion rate. Satisfaction: loyalty score (NPS), satisfaction score (CSAT). Efficiency: cost per outcome, margin, lead times."
+          class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        ></div>
+      </section>
+      <section id="platforms" class="mb-8" aria-labelledby="drivers-heading">
+        <div class="mb-4 flex items-end justify-between">
+          <div>
+            <p class="eyebrow">02 · Drivers</p>
+            <h2
+              id="drivers-heading"
+              class="mt-1 text-xl font-bold tracking-tight"
+            >
+              What is driving performance
+            </h2>
+          </div>
+          <span class="text-xs text-slate-400">Updated today at 09:42</span>
+        </div>
+        <div
+          id="driver-grid"
+          aria-label="Conversion by stage (sales funnel); Performance by platform (Instagram, TikTok, YouTube, etc.); Quality (qualified lead ratio, attendance rate, pass rate); Performance by product (which product generates more commissions and better conversion); Activity (posts published, stories, reels, videos by platform); Engagement (likes, comments, shares, saves by platform)"
+          class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        ></div>
+      </section>
+      <section id="operations" aria-labelledby="operations-heading">
+        <div class="mb-4">
+          <p class="eyebrow">03 · Operations</p>
+          <h2
+            id="operations-heading"
+            class="mt-1 text-xl font-bold tracking-tight"
+          >
+            Turn insights into action
+          </h2>
+        </div>
+        <div class="grid gap-4 xl:grid-cols-3">
+          <article
+            class="card overflow-hidden xl:col-span-2"
+            aria-labelledby="products-title"
+          >
+            <div
+              class="flex items-start justify-between border-b border-slate-100 p-5"
+            >
+              <div>
+                <p class="eyebrow text-[#6d5ce7]">Products</p>
+                <h3 id="products-title" class="mt-1 font-bold">
+                  Product performance
+                </h3>
+                <p class="mt-1 text-xs text-slate-400">
+                  Price, commissions generated, conversions, and ROI per product
+                </p>
+              </div>
+              <select
+                data-table-filter="products"
+                class="rounded-md border border-slate-200 px-2 py-1 text-xs text-slate-600"
+                aria-label="Filter products"
+              >
+                <option value="all">All products</option>
+                <option value="top">Top performers</option>
+              </select>
+            </div>
+            <div class="scroll-table">
+              <table class="w-full text-left text-xs">
+                <thead
+                  class="bg-slate-50 text-[10px] uppercase tracking-wider text-slate-400"
+                >
+                  <tr>
+                    <th class="px-5 py-3">Product</th>
+                    <th class="px-2 py-3">Price</th>
+                    <th class="px-2 py-3">Commissions generated</th>
+                    <th class="px-2 py-3">Conversions</th>
+                    <th class="px-5 py-3">ROI</th>
+                  </tr>
+                </thead>
+                <tbody id="products-table"></tbody>
+              </table>
+            </div>
+          </article>
+          <article
+            class="card overflow-hidden"
+            aria-labelledby="platforms-title"
+          >
+            <div
+              class="flex items-start justify-between border-b border-slate-100 p-5"
+            >
+              <div>
+                <p class="eyebrow text-[#6d5ce7]">Platforms</p>
+                <h3 id="platforms-title" class="mt-1 font-bold">
+                  Platform performance
+                </h3>
+              </div>
+              <select
+                data-table-filter="platforms"
+                class="rounded-md border border-slate-200 px-2 py-1 text-xs text-slate-600"
+                aria-label="Filter platforms"
+              >
+                <option value="all">All</option>
+                <option value="top">Top platforms</option>
+              </select>
+            </div>
+            <div class="scroll-table">
+              <table class="w-full text-left text-xs">
+                <thead
+                  class="bg-slate-50 text-[10px] uppercase tracking-wider text-slate-400"
+                >
+                  <tr>
+                    <th class="px-5 py-3">Platform</th>
+                    <th class="px-2 py-3">Reach</th>
+                    <th class="px-2 py-3">Engagement</th>
+                    <th class="px-2 py-3">Conversions</th>
+                    <th class="px-5 py-3">Best by metric</th>
+                  </tr>
+                </thead>
+                <tbody id="platforms-table"></tbody>
+              </table>
+            </div>
+          </article>
+          <article
+            class="card overflow-hidden xl:col-span-2"
+            aria-labelledby="campaigns-title"
+          >
+            <div
+              class="flex items-start justify-between border-b border-slate-100 p-5"
+            >
+              <div>
+                <p class="eyebrow text-[#6d5ce7]">Campaigns</p>
+                <h3 id="campaigns-title" class="mt-1 font-bold">
+                  Campaign performance
+                </h3>
+              </div>
+              <select
+                data-table-filter="campaigns"
+                class="rounded-md border border-slate-200 px-2 py-1 text-xs text-slate-600"
+                aria-label="Filter campaigns"
+              >
+                <option value="all">All campaigns</option>
+                <option value="attention">Needs attention</option>
+              </select>
+            </div>
+            <div class="scroll-table">
+              <table class="w-full text-left text-xs">
+                <thead
+                  class="bg-slate-50 text-[10px] uppercase tracking-wider text-slate-400"
+                >
+                  <tr>
+                    <th class="px-5 py-3">Campaign</th>
+                    <th class="px-2 py-3">Dates</th>
+                    <th class="px-2 py-3">Products promoted</th>
+                    <th class="px-2 py-3">Result</th>
+                    <th class="px-5 py-3">Performance</th>
+                  </tr>
+                </thead>
+                <tbody id="campaigns-table"></tbody>
+              </table>
+            </div>
+          </article>
+          <article class="card p-5" aria-labelledby="alerts-title">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="eyebrow text-[#6d5ce7]">Signals</p>
+                <h3 id="alerts-title" class="mt-1 font-bold">Anomaly alerts</h3>
+              </div>
+              <span
+                class="rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-bold text-amber-700"
+                >3 updates</span
+              >
+            </div>
+            <ul id="alerts-list" class="mt-5 grid gap-2.5"></ul>
+          </article>
+          <article
+            class="card p-5 xl:col-span-3"
+            aria-labelledby="priorities-title"
+          >
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p class="eyebrow text-[#6d5ce7]">Priorities</p>
+                <h3 id="priorities-title" class="mt-1 font-bold">
+                  Ranked opportunities
+                </h3>
+              </div>
+              <select
+                id="priority-filter"
+                class="rounded-md border border-slate-200 px-2 py-1 text-xs text-slate-600"
+                aria-label="Filter ranked opportunities"
+              >
+                <option value="all">All lists</option>
+                <option value="product">Top products</option>
+                <option value="platform">Top platforms</option>
+                <option value="campaign">Top campaigns</option>
+                <option value="improve">Improvement opportunities</option>
+              </select>
+            </div>
+            <ol
+              id="priority-list"
+              class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+            ></ol>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer
+      class="mx-auto max-w-[1340px] px-4 pb-8 text-xs text-slate-400 sm:px-6 lg:px-8"
+    >
+      CreatorPulse · Sample reporting workspace · Commission model: 15% per sale
+      · Engagement rate = interactions ÷ reach
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
